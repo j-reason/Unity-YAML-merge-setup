@@ -1,0 +1,17 @@
+{
+  "name": "com.jreason.yamlmergeinit",
+  "version": "0.0.1",
+  "displayName": "YAML Merge Initialiser",
+  "description": "Package which prompts user to setup YAML Merge in their Git config for this project",
+  "unity": "2020.1",
+  "dependencies": {},
+ "keywords": [
+    "Utility",
+    "Git",
+    "C#"
+  ],
+  "author": {
+    "name": "Joshua Reason"
+  },
+  "license": "MIT"
+}
