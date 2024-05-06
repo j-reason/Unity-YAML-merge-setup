@@ -1,7 +1,7 @@
 {
-  "name": "com.jreason.yamlmergeinit",
+  "name": "com.jreason.yamlmergesetup",
   "version": "0.0.1",
-  "displayName": "YAML Merge Initialiser",
+  "displayName": "YAML Smart Merge Setup",
   "description": "Package which prompts user to setup YAML Merge in their Git config for this project",
   "unity": "2020.1",
   "dependencies": {},
