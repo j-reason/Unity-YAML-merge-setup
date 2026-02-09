@@ -25,7 +25,7 @@ public static class GitCommands
     public static bool isYAMLMergePathSame(string repoPath, string YAMLMergePath)
     {
 #if UNITY_EDITOR_WIN
-        return GitCommandsWinows.isYAMLMergePathSame(repoPath,YAMLMergePath);
+        return GitCommandsWinows.isYAMLMergePathSame(repoPath, YAMLMergePath);
 #else
         return false;
 # endif
@@ -39,5 +39,15 @@ public static class GitCommands
 
 #endif
 
+    }
+
+    public static void RunMerge(string repoPath)
+    {
+        Debug.Log("Running merge");
+#if UNITY_EDITOR_WIN
+        GitCommandsWinows.RunYAMLMerge(repoPath);
+#else
+
+#endif
     }
 }

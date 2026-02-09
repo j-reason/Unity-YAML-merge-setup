@@ -89,7 +89,12 @@ public static class YAMLSmartMergeSetup
     }
 
 
-    
+    [MenuItem("Tools/Git/Run Unity YAML Merge", priority = 0)]
+    public static void RunMerge()
+    {
+        GitCommands.RunMerge(PROJECTPATH);
+    }
+
 
 
     private static int RunChecks(string repoPath)

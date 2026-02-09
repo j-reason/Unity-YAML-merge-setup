@@ -37,7 +37,9 @@ public static class GitCommandsWinows
         string command = "git config --get merge.tool";
         string output = CommandOutput(command, path, s_debug);
 
-        return String.Equals(MERGETOOL,output);
+
+        Debug.Log($"Output: {output}, Expected: {MERGETOOL}, Contains: {output.Contains(MERGETOOL, StringComparison.InvariantCulture)}");
+        return output.Contains(MERGETOOL,StringComparison.InvariantCulture);
     }
 
     public static bool isYAMLMergePathSame(string repoPath, string YAMLMergePath)
@@ -47,7 +49,7 @@ public static class GitCommandsWinows
         output = output.TrimEnd();
 
         string expectedOutput = @$"'{YAMLMergePath}' merge -p ""$BASE"" ""$REMOTE"" ""$LOCAL"" ""$MERGED""";
-        Debug.Log($"Comparing: \n\rResult: {output}\n\rExpected: {expectedOutput}");
+        //Debug.Log($"Comparing: \n\rResult: {output}\n\rExpected: {expectedOutput}, BuiltYAML Path: {BuildYAMLMergePath(YAMLMergePath,true)}");
         return string.Equals(output, expectedOutput);
     }
 
@@ -55,14 +57,24 @@ public static class GitCommandsWinows
     {
         string addYAML = "git config merge.tool unityyamlmerge";
         string trustExitCode = "git config mergetool.unityyamlmerge.trustExitCode false";
+        string disableOrig = "git config --global mergetool.keepBackup false";
 
         string setYAMLPath = BuildYAMLMergePath(YAMLMergePath,true);
         
 
         CommandOutput(addYAML, repoPath, s_debug);
         CommandOutput(trustExitCode, repoPath, s_debug);
+        CommandOutput(disableOrig, repoPath, s_debug);
         CommandOutput(setYAMLPath, repoPath, s_debug);
         
+    }
+
+    public static void RunYAMLMerge(string path)
+    {
+        string command = "git mergetool --tool unityyamlmerge";
+        string output = CommandOutput(command, path, true);
+
+        Debug.Log($"Output: {output}");
     }
 
     private static string BuildYAMLMergePath(string YAMLMergePath, bool forOutput)
