@@ -1,9 +1,7 @@
 {
-    "name": "com.jreason.yamlmergeinit",
+    "name": "com.jreason.yamlmergeinit.plugins",
     "rootNamespace": "",
-    "references": [
-        "GUID:c8f41bcd07f17b249a8f10e8075f65d4"
-    ],
+    "references": [],
     "includePlatforms": [
         "Editor"
     ],

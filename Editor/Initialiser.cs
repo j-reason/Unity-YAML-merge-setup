@@ -92,22 +92,22 @@ public static class YAMLSmartMergeSetup
     [MenuItem("Tools/Git/Run Unity YAML Merge", priority = 0)]
     public static void RunMerge()
     {
-        GitCommands.RunMerge(PROJECTPATH);
+        GitCommandsWinows.RunYAMLMerge(PROJECTPATH);
     }
 
 
 
     private static int RunChecks(string repoPath)
     {
-        if (!GitCommands.isProjectGitRepo(repoPath)) //Git not intialise on system or not in project
+        if (!GitCommandsWinows.isProjectGitRepo(repoPath)) //Git not intialise on system or not in project
             return -1;
         if (!System.IO.File.Exists(YAMLMERGETOOLPATH)) //Check for YAML Merge Tool
             return -2;
 
-        if (!GitCommands.isMergeYAMLSetup(repoPath)) //YAML not configured in project
+        if (!GitCommandsWinows.isMergeYAMLSetup(repoPath)) //YAML not configured in project
             return -3;
 
-        if (!GitCommands.isYAMLMergePathSame(repoPath, YAMLMERGETOOLPATH)) //YAML not setup but not this version of unity
+        if (!GitCommandsWinows.isYAMLMergePathSame(repoPath, YAMLMERGETOOLPATH)) //YAML not setup but not this version of unity
             return -4;
 
         //all setup properly
@@ -131,7 +131,7 @@ public static class YAMLSmartMergeSetup
         }
 
         EditorPrefs.SetBool(k_dontAskMeAgainKey, false);
-        GitCommands.SetupYAML(repoPath, YAMLMERGETOOLPATH);
+        GitCommandsWinows.SetupYAML(repoPath, YAMLMERGETOOLPATH);
     }
 
 
