@@ -12,6 +12,7 @@ namespace YAMLMergeInEditor
 
         public static CliWrap.Command Git(string repositoryPath, params string[] arguments)
         {
+            Debug.Log(Debug.LogLevel.Debug, $"creating git command at: {repositoryPath}. Arguments: {string.Join(" ", arguments)}");
             return Cli.Wrap("git").WithWorkingDirectory(repositoryPath).WithArguments(arguments);
         }
 
@@ -21,6 +22,23 @@ namespace YAMLMergeInEditor
             {
                 Debug.Log(Debug.LogLevel.Trace, $"Running: {command}");
                 await command.ExecuteAsync();
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log(Debug.LogLevel.Error, $"Error Running: {command} \r\n {e}");
+                throw e;
+            }
+        }
+
+        public static async Awaitable<string> RunGetOutput(CliWrap.Command command)
+        {
+            try
+            {
+                Debug.Log(Debug.LogLevel.Trace, $"Running: {command}");
+                var output = await command.ExecuteBufferedAsync();
+                Debug.Log(Debug.LogLevel.Debug, $"Output: {output.StandardOutput}");
+
+                return output;
             }
             catch (System.Exception e)
             {

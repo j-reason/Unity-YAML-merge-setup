@@ -1,6 +1,8 @@
+using Mono.Cecil;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
+using YAMLMergeInEditor.Commands;
 
 namespace YAMLMergeInEditor
 {
@@ -16,6 +18,15 @@ namespace YAMLMergeInEditor
 
 
 
+        }
+
+        [MenuItem("Tools/Git/Test Merge")]
+        public static void TestMerge()
+        {
+            if(GitCommands.TryGetMergeCommit(Settings.DefaultRepoPath, out var hash))
+            {
+                GitCommands.GetMergeConflictFiles(Settings.DefaultRepoPath);
+            }
         }
 
 
